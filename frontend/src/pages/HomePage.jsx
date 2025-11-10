@@ -1,9 +1,9 @@
 import Footer from "../components/Footer";
-import { NavBar } from "../components/NavBar";
 
 export const HomePage = () => {
   return (
     <>
+      <h1>hola mundo</h1>
       <Footer />
     </>
   );

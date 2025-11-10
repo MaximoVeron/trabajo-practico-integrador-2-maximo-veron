@@ -4,6 +4,7 @@ import { PrivateRoutes } from "./PrivateRoutes";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { HomePage } from "../pages/HomePage";
+import { CharactersPage } from "../pages/CharactersPage";
 
 export const AppRouter = () => {
   return (
@@ -14,6 +15,7 @@ export const AppRouter = () => {
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route path="/home" element={<HomePage />} />
+        <Route path="/characters" element={<CharactersPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/home" />} />

@@ -32,14 +32,19 @@ export const NavBar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/tareas">
                 Tareas
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/">
                 Perfil
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link className="nav-link" to="/characters">
+                Personajes divertidos...
+              </Link>
             </li>
             <li className="nav-item">
               <button type="button" onClick={handleLogOut}>
