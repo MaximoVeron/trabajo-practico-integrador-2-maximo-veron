@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { useForm } from "../hooks/useForm";
 
 const RegisterForm = () => {
@@ -5,16 +6,30 @@ const RegisterForm = () => {
     username: "",
     email: "",
     password: "",
-    firstName: "",
-    lastName: "",
+    name: "",
+    lastname: "",
     dni: "",
   });
-  const { username, email, password, firstName, lastName, dni } = formState;
+  const navigate = useNavigate();
+  const { username, email, password, name, lastname, dni } = formState;
   const handleRegister = async (e) => {
     e.preventDefault();
-    await fetch("");
-    handleResetForm();
+    const resp = await fetch("http://localhost:3000/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formState),
+    });
+    const data = await resp.json();
+    console.log(data);
+    data.ok ? alert(data.message) : alert("Error al registrar usuario");
+    if (data.ok) {
+      handleResetForm();
+      navigate("/login");
+    }
   };
+
   return (
     <div style={{ paddingTop: 72, paddingBottom: 80 }}>
       <form
@@ -66,29 +81,29 @@ const RegisterForm = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="firstName" className="form-label">
+          <label htmlFor="name" className="form-label">
             Nombre
           </label>
           <input
             type="text"
             className="form-control"
-            id="firstName"
-            name="firstName"
-            value={firstName}
+            id="name"
+            name="name"
+            value={name}
             onChange={handleChange}
             required
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="lastName" className="form-label">
+          <label htmlFor="lastname" className="form-label">
             Apellido
           </label>
           <input
             type="text"
             className="form-control"
-            id="lastName"
-            name="lastName"
-            value={lastName}
+            id="lastname"
+            name="lastname"
+            value={lastname}
             onChange={handleChange}
             required
           />
