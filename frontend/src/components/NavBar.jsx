@@ -8,11 +8,11 @@ export const NavBar = () => {
     navigate("/login");
   };
   return isLogged ? (
-    <nav className="navbar  navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
       <div className="container">
-        <a className="navbar-brand fw-bold" href="#">
+        <Link className="navbar-brand fw-bold fs-4" to="/home">
           Mi Aplicación
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -25,30 +25,34 @@ export const NavBar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto align-items-center">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link" to="/home">
                 Inicio
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/tareas">
+              <Link className="nav-link" to="/tasks">
                 Tareas
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Perfil
-              </Link>
-            </li>
-            <li>
               <Link className="nav-link" to="/characters">
-                Personajes divertidos...
+                Personajes
               </Link>
             </li>
             <li className="nav-item">
-              <button type="button" onClick={handleLogOut}>
-                salir
+              <Link className="nav-link" to="/profile">
+                Perfil
+              </Link>
+            </li>
+            <li className="nav-item ms-2">
+              <button
+                type="button"
+                className="btn btn-outline-light btn-sm"
+                onClick={handleLogOut}
+              >
+                Salir
               </button>
             </li>
           </ul>
@@ -56,11 +60,11 @@ export const NavBar = () => {
       </div>
     </nav>
   ) : (
-    <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark border-bottom">
       <div className="container">
-        <a className="navbar-brand fw-bold" href="#">
+        <Link className="navbar-brand fw-bold fs-4" to="/">
           Mi Aplicación
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -76,12 +80,15 @@ export const NavBar = () => {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/login">
-                Login
+                Iniciar Sesión
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                Register
+              <Link
+                className="btn btn-outline-light btn-sm ms-2"
+                to="/register"
+              >
+                Registrarse
               </Link>
             </li>
           </ul>

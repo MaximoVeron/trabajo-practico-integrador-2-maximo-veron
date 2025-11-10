@@ -5,6 +5,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { HomePage } from "../pages/HomePage";
 import { CharactersPage } from "../pages/CharactersPage";
+import { ProfilePage } from "../pages/ProfilePage";
 
 export const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRouter = () => {
       <Route element={<PrivateRoutes />}>
         <Route path="/home" element={<HomePage />} />
         <Route path="/characters" element={<CharactersPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/home" />} />

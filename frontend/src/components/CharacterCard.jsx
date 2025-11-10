@@ -5,51 +5,68 @@ import { Loading } from "./Loading";
 export const CharacterCard = () => {
   const { counter, aumentCounter, decrementCounter, equalCounter } =
     useCounter();
-  const { character } = useFetch(
+  const { character, loading, error } = useFetch(
     `https://rickandmortyapi.com/api/character/${counter}`
   );
 
-  if (!character) return <Loading />;
+  if (loading === true) return <Loading />;
+  if (error)
+    return (
+      <div className="alert alert-danger text-center" role="alert">
+        <h4 className="alert-heading">Error</h4>
+        <p>No se pudo cargar el personaje. Intenta nuevamente.</p>
+      </div>
+    );
+  if (!character) return <p className="text-center">Cargando personaje...</p>;
+
   return (
     <>
       {
-        <div className="card" style={{ width: "18rem" }}>
+        <div className="card shadow-sm border-0" style={{ maxWidth: "24rem" }}>
           <img
             src={character.image}
             className="card-img-top"
             alt={character.name}
           />
           <div className="card-body">
-            <h2>{character.name}</h2>
-            <p className="card-text">
-              {character.status} {character.gender}
+            <h3 className="card-title fw-bold text-primary">
+              {character.name}
+            </h3>
+            <p className="card-text text-muted mb-3">
+              <span className="badge bg-secondary me-2">
+                {character.status}
+              </span>
+              <span className="badge bg-info">{character.gender}</span>
             </p>
-          </div>
-          <div>
-            <ul>
-              <li>
-                <button type="button" onClick={aumentCounter}>
-                  Siguiente personaje
-                </button>
-              </li>
-              <li>
+            <div className="d-flex flex-column gap-2 mb-3">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={aumentCounter}
+              >
+                Siguiente Personaje
+              </button>
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                disabled={counter === 1}
+                onClick={decrementCounter}
+              >
+                Anterior
+              </button>
+              {counter > 1 && (
                 <button
                   type="button"
-                  disabled={counter === 1}
-                  onClick={decrementCounter}
+                  className="btn btn-outline-primary"
+                  onClick={equalCounter}
                 >
-                  Anterior
+                  Volver al Primero
                 </button>
-              </li>
-              {counter > 1 && (
-                <li>
-                  <button type="button" onClick={equalCounter}>
-                    Volver al primer personaje
-                  </button>
-                </li>
               )}
-              <h1>{counter}</h1>
-            </ul>
+            </div>
+            <div className="text-center">
+              <span className="badge bg-dark fs-6">Personaje #{counter}</span>
+            </div>
           </div>
         </div>
       }

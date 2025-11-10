@@ -33,41 +33,45 @@ const RegisterForm = () => {
   return (
     <div style={{ paddingTop: 72, paddingBottom: 80 }}>
       <form
-        className="p-4 rounded shadow bg-light"
-        style={{ maxWidth: 400, margin: "2rem auto" }}
+        className="p-5 rounded shadow-sm bg-white border"
+        style={{ maxWidth: 480, margin: "0 auto" }}
         onSubmit={handleRegister}
       >
-        <h2 className="mb-4 text-center">Registro</h2>
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Usuario
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            name="username"
-            onChange={handleChange}
-            value={username}
-            required
-          />
+        <h2 className="mb-4 text-center fw-bold text-primary">Crear Cuenta</h2>
+        <div className="row">
+          <div className="col-md-6 mb-3">
+            <label htmlFor="username" className="form-label fw-semibold">
+              Usuario
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              name="username"
+              onChange={handleChange}
+              value={username}
+              placeholder="Usuario"
+              required
+            />
+          </div>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="email" className="form-label fw-semibold">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              onChange={handleChange}
+              value={email}
+              placeholder="correo@ejemplo.com"
+              required
+            />
+          </div>
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            onChange={handleChange}
-            value={email}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className="form-label fw-semibold">
             Contraseña
           </label>
           <input
@@ -77,39 +81,44 @@ const RegisterForm = () => {
             value={password}
             onChange={handleChange}
             name="password"
+            placeholder="Mínimo 6 caracteres"
             required
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Nombre
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="lastname" className="form-label">
-            Apellido
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="lastname"
-            name="lastname"
-            value={lastname}
-            onChange={handleChange}
-            required
-          />
+        <div className="row">
+          <div className="col-md-6 mb-3">
+            <label htmlFor="name" className="form-label fw-semibold">
+              Nombre
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              placeholder="Nombre"
+              required
+            />
+          </div>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="lastname" className="form-label fw-semibold">
+              Apellido
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="lastname"
+              name="lastname"
+              value={lastname}
+              onChange={handleChange}
+              placeholder="Apellido"
+              required
+            />
+          </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="dni" className="form-label">
+          <label htmlFor="dni" className="form-label fw-semibold">
             DNI
           </label>
           <input
@@ -119,12 +128,24 @@ const RegisterForm = () => {
             name="dni"
             value={dni}
             onChange={handleChange}
+            placeholder="12345678"
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary w-100">
+        <button type="submit" className="btn btn-primary btn-lg w-100 mb-3">
           Registrarse
         </button>
+        <div className="text-center">
+          <small className="text-muted">
+            ¿Ya tienes cuenta?{" "}
+            <a
+              href="/login"
+              className="text-primary text-decoration-none fw-semibold"
+            >
+              Inicia sesión aquí
+            </a>
+          </small>
+        </div>
       </form>
     </div>
   );
