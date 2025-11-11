@@ -1,6 +1,6 @@
-import { PersonModel } from '../models/person.model.js';
-import { TaskModel } from '../models/task.model.js';
-import { UserModel } from '../models/user.model.js';
+import { PersonModel } from "../models/person.model.js";
+import { TaskModel } from "../models/task.model.js";
+import { UserModel } from "../models/user.model.js";
 
 export const getAllTasksByUserId = async (req, res) => {
   const userLoggedId = req.user.id;
@@ -13,14 +13,14 @@ export const getAllTasksByUserId = async (req, res) => {
       include: [
         {
           model: UserModel,
-          as: 'author',
+          as: "author",
           attributes: {
-            exclude: ['password', 'person_id'],
+            exclude: ["password", "person_id"],
           },
           include: [
             {
               model: PersonModel,
-              as: 'person',
+              as: "person",
             },
           ],
         },
@@ -30,7 +30,7 @@ export const getAllTasksByUserId = async (req, res) => {
     res.json(tasks);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'Error interno del servidor' });
+    return res.status(500).json({ message: "Error interno del servidor" });
   }
 };
 
@@ -44,10 +44,12 @@ export const createTask = async (req, res) => {
       is_completed,
       user_id: userLoggedId,
     });
-    res.status(201).json(newTask);
+    res
+      .status(201)
+      .json({ newTask, msg: "tarea creada correctamente", ok: true });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'Error interno del servidor' });
+    return res.status(500).json({ message: "Error interno del servidor" });
   }
 };
 
@@ -60,13 +62,13 @@ export const updateTask = async (req, res) => {
       where: { id, user_id: userLoggedId },
     });
     if (!task) {
-      return res.status(404).json({ message: 'Tarea no encontrada' });
+      return res.status(404).json({ message: "Tarea no encontrada" });
     }
     await task.update({ title, description, is_completed });
     res.json(task);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'Error interno del servidor' });
+    return res.status(500).json({ message: "Error interno del servidor" });
   }
 };
 
@@ -78,12 +80,12 @@ export const deleteTask = async (req, res) => {
       where: { id, user_id: userLoggedId },
     });
     if (!task) {
-      return res.status(404).json({ message: 'Tarea no encontrada' });
+      return res.status(404).json({ message: "Tarea no encontrada" });
     }
     await task.destroy();
-    res.json({ message: 'Tarea eliminada correctamente' });
+    res.json({ message: "Tarea eliminada correctamente" });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'Error interno del servidor' });
+    return res.status(500).json({ message: "Error interno del servidor" });
   }
 };
