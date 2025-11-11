@@ -1,5 +1,6 @@
 import { useCounter } from "../hooks/useCounter";
 import { useFetch } from "../hooks/useFetch";
+import { ErrorAd } from "./ErrorAd";
 import { Loading } from "./Loading";
 
 export const CharacterCard = () => {
@@ -10,13 +11,7 @@ export const CharacterCard = () => {
   );
 
   if (loading === true) return <Loading />;
-  if (error)
-    return (
-      <div className="alert alert-danger text-center" role="alert">
-        <h4 className="alert-heading">Error</h4>
-        <p>No se pudo cargar el personaje. Intenta nuevamente.</p>
-      </div>
-    );
+  if (error) return <ErrorAd />;
   if (!character) return <p className="text-center">Cargando personaje...</p>;
 
   return (
