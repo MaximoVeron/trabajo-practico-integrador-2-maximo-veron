@@ -7,6 +7,7 @@ import { HomePage } from "../pages/HomePage";
 import { CharactersPage } from "../pages/CharactersPage";
 import { ProfilePage } from "../pages/ProfilePage";
 import { TasksPage } from "../pages/TasksPage";
+import { CreateTask } from "../pages/CreateTask";
 
 export const AppRouter = () => {
   return (
@@ -20,6 +21,7 @@ export const AppRouter = () => {
         <Route path="/characters" element={<CharactersPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/tasks" element={<TasksPage />} />
+        <Route path="/createtask" element={<CreateTask />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/home" />} />

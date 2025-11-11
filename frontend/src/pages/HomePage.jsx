@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import Footer from "../components/Footer";
 
 export const HomePage = () => {
   return (
@@ -14,13 +13,12 @@ export const HomePage = () => {
             <Link className="btn btn-primary btn-lg px-4" to="/characters">
               Personajes
             </Link>
-            <Link className="btn btn-primary btn-lg px-4" to="/task">
+            <Link className="btn btn-primary btn-lg px-4" to="/tasks">
               Tareas
             </Link>
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
