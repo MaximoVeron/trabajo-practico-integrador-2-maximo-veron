@@ -8,6 +8,7 @@ export const login = async (req, res) => {
   try {
     const user = await UserModel.findOne({
       where: { username, password },
+      attributes: ["id", "email"],
       include: {
         model: PersonModel,
         attributes: ["name", "lastname"],
@@ -21,6 +22,7 @@ export const login = async (req, res) => {
       id: user.id,
       name: user.person.name,
       lastname: user.person.lastname,
+      email: user.email,
     });
     res.cookie("token", token, {
       httpOnly: true,
@@ -28,7 +30,7 @@ export const login = async (req, res) => {
       // secure: true, // habilitar en producción
       // sameSite: "strict",
     });
-    return res.json({ message: "Login exitoso", ok: true });
+    return res.json({ message: "Login exitoso", ok: true, data: user });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "algo salio mal" });
@@ -68,6 +70,7 @@ export const profile = (req, res) => {
       id: req.user.id,
       name: req.user.name,
       lastname: req.user.lastname,
+      email: req.user.email,
     },
   });
 };

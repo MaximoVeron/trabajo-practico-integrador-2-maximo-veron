@@ -17,6 +17,7 @@ export const LoginForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formState),
+      credentials: "include",
     });
     const data = await resp.json();
     console.log("👉🏻 ~ LoginForm.jsx:20 ~ handleLogin ~ data:", data);

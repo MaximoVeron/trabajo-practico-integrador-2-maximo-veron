@@ -84,10 +84,7 @@ export const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                className="btn btn-outline-light btn-sm ms-2"
-                to="/register"
-              >
+              <Link className="nav-link" to="/register">
                 Registrarse
               </Link>
             </li>
