@@ -48,8 +48,10 @@ export const createTask = async (req, res) => {
       .status(201)
       .json({ newTask, msg: "tarea creada correctamente", ok: true });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Error interno del servidor" });
+    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "Error interno del servidor", ok: false });
   }
 };
 
