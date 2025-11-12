@@ -9,22 +9,22 @@ export const TaskModel = sequelize.define(
       type: DataTypes.STRING(100),
       unique: true,
       allowNull: false,
-      field: "title"
+      field: "title",
     },
     description: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      field: "description"
+      field: "description",
     },
     is_completed: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-      field: "is_completed"
+      field: "is_completed",
     },
   },
   {
     underscored: true,
-    // timestamps: false,
+    timestamps: true,
     // createdAt: "created_at",
   }
 );
