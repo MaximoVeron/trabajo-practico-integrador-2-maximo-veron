@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Footer from "./Footer";
 
 export const ProfileCard = () => {
   const [profile, setProfile] = useState(null);
@@ -52,6 +53,7 @@ export const ProfileCard = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
