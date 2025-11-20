@@ -1,15 +1,39 @@
+import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router";
-import { NavBar } from "../components/NavBar";
-import Footer from "../components/Footer";
+import { Loading } from "../components/Loading";
 
 export const PublicRoutes = () => {
-  const isLogged = localStorage.getItem("isLogged");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  return !isLogged ? (
-    <>
-      <NavBar /> <Outlet /> <Footer />
-    </>
-  ) : (
-    <Navigate to="/home" />
-  );
+  const checkAuth = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/profile", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      console.error("Error verificando autenticación:", error);
+      setIsAuthenticated(false);
+    }
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  if (isAuthenticated === null) {
+    return <Loading />;
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to="/home" replace />;
+  }
+
+  return <Outlet />;
 };
